@@ -1,46 +1,81 @@
-# Getting Started with Create React App
+<p align="center">
+<img src="https://github.com/rocketseat-education/nlw-06-reactjs/raw/master/.github/logo.svg/">
+</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h1 align="center"> 
+  Resultado Visual Esperado: 
+</h1>
 
-## Available Scripts
+<img src="https://user-images.githubusercontent.com/56482367/124347413-0e498a80-dbbb-11eb-81a9-efcf3955ac01.png">
 
-In the project directory, you can run:
+<img src="https://user-images.githubusercontent.com/56482367/124347433-29b49580-dbbb-11eb-940c-10eb3c0fa90f.png">
 
-### `yarn start`
+<img src="https://user-images.githubusercontent.com/56482367/124347451-4cdf4500-dbbb-11eb-9311-6e100b29ebd0.png">
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<img src="https://user-images.githubusercontent.com/56482367/124347483-6da79a80-dbbb-11eb-89e6-ec18f47d6e4c.png">
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<h1 align="center"> 
+  💻 Como rodar o projeto: 
+</h1>
+<p align="center">
+    Após clonar o projeto, acesse ele via seu terminal e execute os comandos:
 
-### `yarn test`
+    yarn 
+  
+  ```
+yarn start
+```
+O app estará disponível no seu browser pelo endereço http://localhost:3000
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Lembrando que será necessário criar uma conta no Firebase e um projeto para disponibilizar um Realtime Database.
 
-### `yarn build`
+Um exemplo de regras compatíveis para o Realtime Database seria: 
+```
+{
+  "rules": {
+   	"rooms": {
+      ".read": false,
+      ".write": "auth != null",
+      "$roomId": {
+        ".read": true,
+        ".write": "auth != null && (!data.exists() || data.child('authorId').val() == auth.id)",
+          "questions": {
+            ".read": true,
+              ".write": "auth != null && (!data.exists() || data.parent().child('authorId').val() == auth.id)",
+                "likes":{
+                  ".read": true,
+                    ".write": "auth != null && (!data.exists() || data.child('authorId').val() == auth.id)",
+                }
+          }
+      }
+    }
+  }
+}
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+O arquivo firebase.ts também deverá ser modificado e substituido com as configurações do seu projeto no firebase ou deverá ser criado o .env.local no projeto conforme o exemplo abaixo: 
+```
+# Firebase 
+REACT_APP_API_KEY="FIREBASE CONFIG AQUI"
+REACT_APP_AUTH_DOMAIN="FIREBASE CONFIG AQUI"
+REACT_APP_DATABASE_URL="FIREBASE CONFIG AQUI"
+REACT_APP_PROJECT_ID="FIREBASE CONFIG AQUI"
+REACT_APP_STORAGE_BUCKET="FIREBASE CONFIG AQUI"
+REACT_APP_MESSAGING_SENDER_ID="FIREBASE CONFIG AQUI"
+REACT_APP_APP_ID=""
+```
+</p>
+<h1 align="center"> 
+  🛠 Tecnologias: 
+</h1>
+<p align="center">
+   React.js •
+   TypeScript •
+   Firebase •
+   Sass •
+</p>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+<p align="center">
+  Feito com 💜
+  por <a href="https://www.linkedin.com/in/evelinmarquess/">Évelin Marques</a>
+</p>
